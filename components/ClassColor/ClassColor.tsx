@@ -1,0 +1,15 @@
+export const colorMap = {
+  "1": "from-1",
+  "2": "from-2",
+  "3": "from-3",
+  "4": "from-4",
+  "5": "from-5",
+  "6": "from-6",
+  "7": "from-7",
+  "8": "from-8",
+  "9": "from-9",
+  "10": "from-10",
+  "11": "from-11",
+  "12": "from-12",
+  "13": "from-13",
+};
