@@ -26,7 +26,7 @@ export const Overview = ({ server, profileData }: Types.OverviewProps) => {
   }, [profileData]);
 
   return (
-    <div className="flex flex-col gap-2 m-2 md:mx-[10%] xl:mx-[15%]">
+    <div className="flex flex-col gap-2 m-2 md:mx-[7%] xl:mx-[15%]">
       <div className="flex flex-col md:flex-row gap-2">
         <CharacterInfo server={server} profileData={profileData} />
         <CharacterScore
@@ -41,7 +41,7 @@ export const Overview = ({ server, profileData }: Types.OverviewProps) => {
         </div>
       ) : null}
 
-      <Raid server={server} name={profileData.name.toLowerCase()} />
+      <Raid server={server} profileData={profileData} />
     </div>
   );
 };

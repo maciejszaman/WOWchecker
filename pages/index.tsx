@@ -148,7 +148,9 @@ export default function Home() {
               <MenuItem value={"silvermoon"}>Silvermoon</MenuItem>
             </Select>
             <div
-              onClick={() => submit()}
+              onClick={() => {
+                !profileDataLoading ? submit() : null;
+              }}
               className={`p-5 bg-neutral-400 rounded-xl shadow-xl hover:bg-neutral-300 transition-all duration-500 hover:-translate-y-1`}
             >
               <GrSearch />
