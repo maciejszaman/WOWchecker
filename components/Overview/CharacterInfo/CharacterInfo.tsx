@@ -21,6 +21,7 @@ export const CharacterInfo = ({
     },
     {
       manual: true,
+      autoCancel: false,
     }
   );
 
@@ -29,7 +30,7 @@ export const CharacterInfo = ({
   }, [profileData]);
 
   return (
-    <div className="flex flex-row gap-4 p-3 md:w-3/5 rounded-lg bg-neutral-800">
+    <div className="flex flex-row gap-4 p-3 md:w-3/5 rounded-lg bg-gray-800 bg-opacity-95">
       {!characterMediaLoading ? (
         <img
           className="shadow-sm rounded-lg h-[84px] w-[84px] aspect-square align-middle"
@@ -37,7 +38,7 @@ export const CharacterInfo = ({
           src={`${characterMedia?.assets[0].value}`}
         ></img>
       ) : (
-        <div className="rounded-lg h-[84px] w-[84px] bg-neutral-900 text-sky-50 ">
+        <div className="rounded-lg h-[84px] w-[84px] bg-gray-600 text-sky-50 ">
           <div className="text-center items-center">
             <p>Loading</p>
             <SyncIcon className="animate-spin" />
@@ -46,7 +47,7 @@ export const CharacterInfo = ({
       )}
       <div className="flex flex-col">
         <div className="name-lvl flex gap-2">
-          <span className="text-neutral-100 text-2xl tracking-wide">
+          <span className="text-gray-100 text-2xl tracking-wide">
             {profileData.name}
           </span>
           <span className="text-amber-300 text-2xl opacity-50">
@@ -54,7 +55,7 @@ export const CharacterInfo = ({
           </span>
         </div>
 
-        <div className="specClassName flex flex-row gap-1 tracking-wide lg:gap-3 text-neutral-400">
+        <div className="specClassName flex flex-row gap-1 tracking-wide lg:gap-3 text-gray-400">
           <p>{`${profileData?.active_spec.name.en_US} ${profileData.character_class.name.en_US} ${profileData.race.name.en_US}`}</p>
         </div>
         {profileData.guild ? (

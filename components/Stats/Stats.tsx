@@ -30,7 +30,7 @@ export const Stats = ({ profileData, server }: Types.StatsProps) => {
       {
         url: `https://eu.api.blizzard.com/profile/wow/character/${server}/${profileData?.name.toLowerCase()}/statistics?namespace=profile-eu&locale=en_GB&access_token=${token}`,
       },
-      { manual: true }
+      { manual: true, autoCancel: false }
     );
 
   const [mainStat, setMainStat] = useState<Types.MainStat>();
@@ -71,111 +71,110 @@ export const Stats = ({ profileData, server }: Types.StatsProps) => {
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col h-[80vh] max-w-[60vh] gap-5 md:ml-[10%] md:mr-[10%] md:mt-3 md:mb-3">
-        <Paper className="bg-neutral-800">
-          {!statsDataLoading ? (
-            <div className="flex justify-evenly">
-              <div className="spec flex flex-col">
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    <FavoriteIcon />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={"Health"}
-                    secondary={statsData?.health}
-                  />
-                </ListItem>
+      <Paper className="bg-gray-800 bg-opacity-95 my-5 max-w-sm">
+        <div className="bg-gray-700 rounded-t-lg p-2 text-gray-300 shadow-sm text-sm font-medium uppercase">
+          <p className="pl-4">Stats</p>
+        </div>
+        {!statsDataLoading ? (
+          <div className="flex justify-evenly">
+            <div className="spec flex flex-col">
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  <FavoriteIcon />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={"Health"}
+                  secondary={statsData?.health}
+                />
+              </ListItem>
 
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    <ShieldIcon />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={"Armor"}
-                    secondary={statsData?.armor?.effective}
-                  />
-                </ListItem>
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  <ShieldIcon />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={"Armor"}
+                  secondary={statsData?.armor?.effective}
+                />
+              </ListItem>
 
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    <ElectricBoltIcon />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={statsData?.power_type.name}
-                    secondary={statsData?.power}
-                  />
-                </ListItem>
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  <ElectricBoltIcon />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={statsData?.power_type.name}
+                  secondary={statsData?.power}
+                />
+              </ListItem>
 
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    {{
-                      Intellect: <PsychologyIcon />,
-                      Agility: <PetsIcon />,
-                      Strength: <FitnessCenterIcon />,
-                    }[mainStat?.name as string] || <p>essa</p>}
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={mainStat ? mainStat.name : null}
-                    secondary={mainStat ? mainStat.value : null}
-                  />
-                </ListItem>
-              </div>
-              <div className="flex flex-col pr-4">
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    <FlareIcon />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={"Critical strike"}
-                    secondary={`${statsData?.spell_crit.value.toFixed(1)}%`}
-                  />
-                </ListItem>
-
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    <HourglassEmptyIcon />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={"Haste"}
-                    secondary={`${statsData?.spell_haste.value.toFixed(1)}%`}
-                  />
-                </ListItem>
-
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    <StarsIcon />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={"Mastery"}
-                    secondary={`${statsData?.mastery.value.toFixed(1)}%`}
-                  />
-                </ListItem>
-
-                <ListItem sx={{ pl: 4 }}>
-                  <ListItemAvatar>
-                    <LanguageIcon />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={"Versatility"}
-                    secondary={`${
-                      statsData?.versatility
-                    } | ${statsData?.versatility_damage_done_bonus.toFixed(
-                      1
-                    )}%`}
-                  />
-                </ListItem>
-              </div>
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  {{
+                    Intellect: <PsychologyIcon />,
+                    Agility: <PetsIcon />,
+                    Strength: <FitnessCenterIcon />,
+                  }[mainStat?.name as string] || <p>essa</p>}
+                </ListItemAvatar>
+                <ListItemText
+                  primary={mainStat ? mainStat.name : null}
+                  secondary={mainStat ? mainStat.value : null}
+                />
+              </ListItem>
             </div>
-          ) : (
-            <div className="bg-neutral-900 text-center text-2xl p-8 animate-pulse w-[358px] h-[288px]">
-              <div className="box">
-                <p className="">Stats Loading</p>
-                <SyncIcon className="animate-spin" />
-              </div>
+            <div className="flex flex-col pr-4">
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  <FlareIcon />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={"Crit chance"}
+                  secondary={`${statsData?.spell_crit.value.toFixed(1)}%`}
+                />
+              </ListItem>
+
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  <HourglassEmptyIcon />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={"Haste"}
+                  secondary={`${statsData?.spell_haste.value.toFixed(1)}%`}
+                />
+              </ListItem>
+
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  <StarsIcon />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={"Mastery"}
+                  secondary={`${statsData?.mastery.value.toFixed(1)}%`}
+                />
+              </ListItem>
+
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemAvatar>
+                  <LanguageIcon />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={"Versatility"}
+                  secondary={`${
+                    statsData?.versatility
+                  } | ${statsData?.versatility_damage_done_bonus.toFixed(1)}%`}
+                />
+              </ListItem>
             </div>
-          )}
-        </Paper>
-      </div>
+          </div>
+        ) : (
+          <div className="bg-gray-900 text-center text-2xl p-8 animate-pulse w-[358px] h-[288px]">
+            <div className="box">
+              <p className="">Stats Loading</p>
+              <SyncIcon className="animate-spin" />
+            </div>
+          </div>
+        )}
+      </Paper>
     </div>
   );
 };

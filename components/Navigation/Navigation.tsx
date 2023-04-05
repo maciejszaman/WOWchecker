@@ -11,14 +11,12 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Overview } from "../Overview/Overview";
 
 export const Navigation = ({ profileData, server }: Types.NavigationProps) => {
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : "";
   const [value, setValue] = useState(0);
 
   return (
     <>
       <BottomNavigation
-        className="bg-neutral-800"
+        className="bg-gray-700 bg-opacity-95"
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
@@ -29,16 +27,20 @@ export const Navigation = ({ profileData, server }: Types.NavigationProps) => {
         <BottomNavigationAction label="Stats" icon={<EqualizerIcon />} />
         <BottomNavigationAction label="Talents" icon={<SchemaIcon />} />
       </BottomNavigation>
-      {value == 0 ? (
-        <Overview server={server} profileData={profileData} />
-      ) : null}
-      {value == 1 ? (
-        <Equipment server={server} profileData={profileData} />
-      ) : null}
-      {value == 2 ? <Stats server={server} profileData={profileData} /> : null}
-      {value == 3 ? (
-        <Talents server={server} profileData={profileData} />
-      ) : null}
+      <div className="mb-20">
+        {value == 0 ? (
+          <Overview server={server} profileData={profileData} />
+        ) : null}
+        {value == 1 ? (
+          <Equipment server={server} profileData={profileData} />
+        ) : null}
+        {value == 2 ? (
+          <Stats server={server} profileData={profileData} />
+        ) : null}
+        {value == 3 ? (
+          <Talents server={server} profileData={profileData} />
+        ) : null}
+      </div>
     </>
   );
 };

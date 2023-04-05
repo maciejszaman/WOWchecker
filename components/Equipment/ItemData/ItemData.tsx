@@ -33,12 +33,7 @@ export const ItemData = ({ item }: Types.ItemDataProps) => {
 
   return (
     <>
-      <ListItem
-        dense
-        divider
-        alignItems="center"
-        className="sm:w-full md:w-[100%] lg:w-[49%] xl:w-[49%] 2xl:w-[32%]"
-      >
+      <ListItem dense divider alignItems="center" className="sm:w-full">
         {itemMedia && !itemLoading ? (
           <ListItemAvatar>
             <Avatar
@@ -54,7 +49,11 @@ export const ItemData = ({ item }: Types.ItemDataProps) => {
         )}
         <ListItemText
           primary={
-            <Button size="small" onClick={handleOpen} className="p-0 text-left">
+            <Button
+              size="small"
+              onClick={handleOpen}
+              className="p-0 text-gray-300 text-left"
+            >
               {item.name}
             </Button>
           }
@@ -67,7 +66,7 @@ export const ItemData = ({ item }: Types.ItemDataProps) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] w-96 backdrop-blur-sm p-5 border-2 border-neutral-600 shadow-2xl">
+                <Box className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] w-96 backdrop-blur-sm p-5 border-2 border-gray-600 shadow-2xl">
                   <div className="flex flex-row gap-5">
                     <div className="flex flex-col gap-5">
                       <Avatar
@@ -79,33 +78,33 @@ export const ItemData = ({ item }: Types.ItemDataProps) => {
                     <div className="flex flex-col w-full">
                       <Typography
                         id="modal-modal-description"
-                        className="text-neutral-200"
+                        className="text-gray-200 text-lg"
                       >
                         {item.name}
                       </Typography>
                       <Typography
                         id="modal-modal-description"
-                        className="text-neutral-300"
+                        className="text-gray-300"
                       >
                         {item.level.display_string}
                       </Typography>
                       <div className="flex flex-row justify-between">
                         <Typography
                           id="modal-modal-description"
-                          className="text-neutral-400"
+                          className="text-gray-400"
                         >
                           {item.slot.name}
                         </Typography>
                         <Typography
                           id="modal-modal-description"
-                          className="text-neutral-400"
+                          className="text-gray-400"
                         >
                           {item.item_subclass.name}
                         </Typography>
                       </div>
                       <Typography
                         id="modal-modal-description"
-                        className="text-neutral-400"
+                        className="text-gray-400"
                       >
                         {item.armor?.display.display_string}
                       </Typography>
@@ -113,7 +112,7 @@ export const ItemData = ({ item }: Types.ItemDataProps) => {
                         <Typography
                           key={index}
                           id="modal-modal-description"
-                          className="text-neutral-300"
+                          className="text-gray-300"
                         >
                           {stat.is_negated ? null : stat.display.display_string}
                         </Typography>

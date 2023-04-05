@@ -55,31 +55,31 @@ export const Raid = ({ server, profileData }: Types.RaidProps) => {
       },
       {
         manual: true,
+        autoCancel: false,
       }
     );
+
+  console.log(raidData);
 
   useEffect(() => {
     fetchRaidData();
   }, [profileData]);
 
   return (
-    <div className=" text-neutral-300 rounded-lg bg-neutral-800">
-      <Box sx={{ borderBottom: 1, borderColor: "divider", p: 0 }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          scrollButtons="auto"
-          variant="scrollable"
-          allowScrollButtonsMobile
-          aria-label="basic tabs example"
-        >
-          {raidData?.expansions.map((expansion, index) => (
-            <Tab label={expansion.expansion.name} {...a11yProps(index)} />
-          ))}
-        </Tabs>
-      </Box>
+    <div className="text-gray-300 rounded-lg bg-gray-800 bg-opacity-95">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        variant="scrollable"
+        aria-label="basic tabs example"
+        className="bg-gray-700 rounded-t-lg shadow-sm"
+      >
+        {raidData?.expansions?.map((expansion, index) => (
+          <Tab label={expansion.expansion.name} {...a11yProps(index)} />
+        ))}
+      </Tabs>
 
-      {raidData?.expansions.map((expansion, index) => (
+      {raidData?.expansions?.map((expansion, index) => (
         <TabPanel value={value} index={index}>
           <Expansion expansion={expansion} key={index} />
         </TabPanel>

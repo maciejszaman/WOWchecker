@@ -101,3 +101,98 @@ export interface Encounter2 {
 export interface Key5 {
   href: string;
 }
+
+export interface JournalInstance {
+  _links: Links;
+  id: number;
+  name: string;
+  map: Map;
+  description: string;
+  encounters: Encounter[];
+  expansion: Expansion;
+  location: Location;
+  modes: Mode[];
+  media: Media;
+  minimum_level: number;
+  category: Category;
+}
+
+export interface Links {
+  self: Self;
+}
+
+export interface Self {
+  href: string;
+}
+
+export interface Map {
+  name: string;
+  id: number;
+}
+
+export interface Encounter {
+  key: Key;
+  name: string;
+  id: number;
+}
+
+export interface Key {
+  href: string;
+}
+
+export interface Expansion {
+  key: Key2;
+  name: string;
+  id: number;
+}
+
+export interface Key2 {
+  href: string;
+}
+
+export interface Location {
+  name: string;
+  id: number;
+}
+
+export interface Mode {
+  mode: Mode2;
+  players: number;
+  is_tracked: boolean;
+}
+
+export interface Mode2 {
+  type: string;
+  name: string;
+}
+
+export interface Media {
+  key: Key3;
+  id: number;
+}
+
+export interface Key3 {
+  href: string;
+}
+
+export interface Category {
+  type: string;
+}
+
+export interface JournalMedia {
+  _links: Links;
+  assets: Asset[];
+}
+
+export interface Links {
+  self: Self;
+}
+
+export interface Self {
+  href: string;
+}
+
+export interface Asset {
+  key: string;
+  value: string;
+}

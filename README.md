@@ -1,4 +1,4 @@
-`0.7v`
+`0.7.1v`
 
 wow profile, inventory, talents viewer
 

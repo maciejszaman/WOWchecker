@@ -10,7 +10,7 @@ export const MythicRun = ({ run }: Types.MythicRunProps) => {
           <p>{run.keystone_level}</p>
         </div>
       ) : (
-        <div className="text-neutral-500">
+        <div className="text-gray-500">
           <p>{run.dungeon.name.en_GB}</p>
           <p>{run.keystone_level}</p>
         </div>

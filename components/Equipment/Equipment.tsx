@@ -18,7 +18,7 @@ export const Equipment = ({ profileData, server }: Types.EquipmentProps) => {
     {
       url: `https://eu.api.blizzard.com/profile/wow/character/${server}/${profileData?.name.toLowerCase()}/equipment?namespace=profile-eu&locale=en_GB&access_token=${token}`,
     },
-    { manual: true }
+    { manual: true, autoCancel: false }
   );
 
   useEffect(() => {
@@ -26,29 +26,29 @@ export const Equipment = ({ profileData, server }: Types.EquipmentProps) => {
   }, [profileData]);
 
   return (
-    <div className="flex flex-col gap-5 md:ml-[10%] md:mr-[10%] md:mt-3 md:mb-3">
-      {!playerEquipmentLoading ? (
-        <>
-          <Paper className="bg-neutral-800">
-            <div className="CharacterItems p-2">
-              <ul className="flex md:flex-row md:flex-wrap flex-col flex-start gap-2">
-                {playerEquipment?.equipped_items.map((item, index) => (
-                  <ItemData server={server} key={index} item={item} />
-                ))}
-              </ul>
-            </div>
-          </Paper>
-          <Paper className="bg-neutral-800 w-fit">
-            <ListItem>
-              <ListItemText
-                secondary={`Item Level: ${profileData?.average_item_level}`}
-              ></ListItemText>
-            </ListItem>
-          </Paper>{" "}
-        </>
-      ) : (
-        <div className="h-4/5 bg-neutral-500 animate-pulse w-max"></div>
-      )}
+    <div className="flex justify-center">
+      <div className="my-5 max-w-lg">
+        {!playerEquipmentLoading ? (
+          <>
+            <Paper className="bg-slate-800 bg-opacity-95">
+              <div className="bg-gray-700 shadow-sm p-2 bg-opacity-75 rounded-t-lg text-gray-300 text-sm font-medium uppercase">
+                <p className="pl-3">Equipment</p>
+              </div>
+              <div className="CharacterItems p-1">
+                <ul className="flex md:flex-row md:flex-wrap flex-col flex-start gap-2">
+                  {playerEquipment?.equipped_items.map((item, index) => (
+                    <ItemData server={server} key={index} item={item} />
+                  ))}
+                </ul>
+              </div>
+            </Paper>
+          </>
+        ) : (
+          <div className="w-lg bg-gray-800 bg-opacity-95 animate-pulse text-gray-300">
+            Loading
+          </div>
+        )}
+      </div>
     </div>
   );
 };

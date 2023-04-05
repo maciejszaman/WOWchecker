@@ -1,22 +1,14 @@
 import React from "react";
 import * as Types from "./Expansion.types";
+import { Instance } from "./Instance/Instance";
 
 export const Expansion = ({ expansion }: Types.ExpansionProps) => {
-  console.log(expansion);
   return (
-    <div className="bg-neutral-700 p-3 rounded-lg ">
-      {expansion.instances.map((raid) => (
-        <div className="flex flex-row">
-          <p className="text-neutral-300">{raid.instance.name}</p>
-          {raid.modes.map((mode, index) => (
-            <div className="flex gap-2 text-neutral-400">
-              <p>{mode.difficulty.name}</p>
-              <span>{mode.progress.completed_count}</span>
-              <span>/</span>
-              <span>{mode.progress.total_count}</span>
-            </div>
-          ))}
-        </div>
+    <div className="bg-opacity-75 grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      {expansion.instances.map((instance, index) => (
+        <>
+          <Instance expansion={expansion} key={index} instance={instance} />
+        </>
       ))}
     </div>
   );

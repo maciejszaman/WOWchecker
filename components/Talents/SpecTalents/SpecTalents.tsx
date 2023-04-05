@@ -1,7 +1,7 @@
 import { Avatar, ListItem, ListItemAvatar, Tooltip } from "@mui/material";
 import useAxios from "axios-hooks";
 import React from "react";
-import * as Types from "./SpecTalents";
+import * as Types from "./SpecTalents.types";
 
 export const SpecTalents = ({
   specTalent,

@@ -1,23 +1,9 @@
-import {
-  Avatar,
-  Divider,
-  FormControl,
-  InputLabel,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  MenuItem,
-  Paper,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
-import * as SharedTypes from "../../shared/types";
+import { List, ListItem } from "@mui/material";
 import useAxios from "axios-hooks";
 import React, { useEffect, useState } from "react";
 import { ClassTalents } from "./ClassTalents/ClassTalents";
 import { SpecTalents } from "./SpecTalents/SpecTalents";
-import * as Types from "./Talents";
+import * as Types from "./Talents.types";
 import * as TalentsTypes from "../../shared/talents.types";
 
 export const Talents = ({ profileData, server }: Types.TalentsProps) => {
@@ -33,6 +19,7 @@ export const Talents = ({ profileData, server }: Types.TalentsProps) => {
     },
     {
       manual: true,
+      autoCancel: false,
     }
   );
 
@@ -41,12 +28,14 @@ export const Talents = ({ profileData, server }: Types.TalentsProps) => {
   }, [profileData]);
 
   return (
-    <div className="flex flex-col justify-center gap-5 sm:flex-row">
-      <List className="my-2 bg-neutral-700 text-neutral-200 drop-shadow rounded-lg h-fit min-w-60">
-        <ListItem className="text-lg text-neutral-300 tracking-wider">
+    <div
+      className="flex flex-col justify-center gap-5 sm:flex-row p-5 rounded-lg
+    "
+    >
+      <List className=" bg-gray-800 rounded-lg bg-opacity-95 text-gray-300 h-fit">
+        <ListItem className="-mt-2 mb-3 text-sm font-medium bg-gray-700 tracking-wider shadow-sm rounded-t-lg">
           {profileData.character_class.name.en_GB.toUpperCase()}
         </ListItem>
-        <Divider className="mb-3"></Divider>
         {specializationsData?.specializations[0].loadouts ? (
           specializationsData.specializations[0].loadouts[0].selected_class_talents.map(
             (classTalent, index) => (
@@ -59,18 +48,17 @@ export const Talents = ({ profileData, server }: Types.TalentsProps) => {
             )
           )
         ) : (
-          <div className="italic text-neutral-500 px-3 pb-3">
+          <div className="italic text-gray-500 p-3 py-9">
             This player has no talents selected
           </div>
         )}
       </List>
-      <List className="my-2 bg-neutral-700 text-neutral-200 drop-shadow rounded-lg h-fit min-w-60">
-        <ListItem className="text-lg text-neutral-300 tracking-wider">
+      <List className=" bg-gray-800 bg-opacity-95 text-gray-300 rounded-lg h-fit">
+        <ListItem className="-mt-2 mb-3 text-sm font-medium bg-gray-700 bg-opacity-75 tracking-wider shadow-sm rounded-t-lg">
           {specializationsData?.active_specialization
             ? specializationsData?.active_specialization.name.toUpperCase()
             : "SPEC"}
         </ListItem>
-        <Divider className="mb-3"></Divider>
         {specializationsData?.specializations[0].loadouts ? (
           specializationsData.specializations[0].loadouts[0].selected_spec_talents.map(
             (specTalent, index) => (
@@ -82,7 +70,7 @@ export const Talents = ({ profileData, server }: Types.TalentsProps) => {
             )
           )
         ) : (
-          <div className="italic text-neutral-500 px-3 pb-3">
+          <div className="italic text-gray-500 p-3 py-9">
             This player has no talents selected
           </div>
         )}

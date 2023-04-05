@@ -17,7 +17,7 @@ export const MythicSeason = ({
     );
 
   return selectedSeason === season.id ? (
-    <div className="bg-neutral-700 p-2 rounded-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="p-2 rounded-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {mythicSeasonData
         ? mythicSeasonData.best_runs.map((run, index) => (
             <MythicRun key={index} run={run}></MythicRun>
@@ -28,13 +28,13 @@ export const MythicSeason = ({
 };
 
 {
-  /* <div className="flex flex-col gap-2 bg-neutral-700 p-4 rounded-lg">
-  <div className="head flex flex-row gap-2 leading-10 text-neutral-100">
+  /* <div className="flex flex-col gap-2 bg-gray-700 p-4 rounded-lg">
+  <div className="head flex flex-row gap-2 leading-10 text-gray-100">
     <p className="text-4xl">{`+${dungeon.keystone_level}`}</p>
     <p>{dungeon.dungeon.name}</p>
   </div>
   <div className="body pl-8">
-    <p className="text-neutral-400 text-sm">
+    <p className="text-gray-400 text-sm">
       {new Date(dungeon.completed_timestamp).toDateString()}
     </p>
 

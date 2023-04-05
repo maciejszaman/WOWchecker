@@ -1,4 +1,5 @@
 import {
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -25,14 +26,14 @@ export const MythicPlus = ({ mythicPlusData }: Types.MythicPlusProps) => {
     <>
       {mythicPlusData ? (
         mythicPlusData.seasons ? (
-          <div className="sm:text-left flex items-center gap-3">
-            <p className="text-neutral-300 text-lg tracking-wide order-2">
+          <div className="bg-gray-700 bg-opacity-75 rounded-t-lg shadow-sm w-full flex gap-1 items-center">
+            <p className="text-gray-300 text-sm font-medium uppercase order-2">
               Mythic+ Dungeons Top runs
             </p>
             <FormControl
               variant="outlined"
               size="small"
-              sx={{ m: 1, minWidth: 125 }}
+              sx={{ m: 1, minWidth: 80, maxWidth: 225 }}
             >
               <InputLabel id="demo-simple-select-standard-label">
                 Season
@@ -62,10 +63,10 @@ export const MythicPlus = ({ mythicPlusData }: Types.MythicPlusProps) => {
               key={index}
               selectedSeason={selectedSeason}
               season={season}
-            ></MythicSeason>
+            />
           ))
         ) : (
-          <p className="italic text-sm text-neutral-500 tracking-wide p-6">
+          <p className="italic text-sm text-gray-500 tracking-wide p-6">
             This player has no registered M+ dungeon runs
           </p>
         )
